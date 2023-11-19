@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+<body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const table = document.createElement('table');
+      const thead = table.createTHead();
+      const headerRow = thead.insertRow();
+      ['Name', 'Email', 'Password', 'Dob', 'Accepted terms?'].forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+      });
+      const form = document.createElement('form');
+      form.id = 'registrationForm';
+      const tbody = table.createTBody();
+      ['Name', 'Email', 'Password', 'Dob'].forEach(labelText => {
+        const label = document.createElement('label');
+        label.for = labelText.toLowerCase();
+        label.textContent = `${labelText}: `;
+        
+        const input = document.createElement('input');
+        input.type = labelText === 'Dob' ? 'date' : 'text';
+        input.id = labelText.toLowerCase();
+        input.name = labelText.toLowerCase();
+        input.required = true;
+
+        form.appendChild(label);
+        form.appendChild(input);
+        form.appendChild(document.createElement('br'));
+      });
+      const checkboxLabel = document.createElement('label');
+      checkboxLabel.for = 'acceptedTerms';
+      checkboxLabel.textContent = 'Accepted terms? ';
+      
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = 'acceptedTerms';
+      checkbox.name = 'acceptedTerms';
+      checkbox.required = true;
+
+      form.appendChild(checkboxLabel);
+      form.appendChild(checkbox);
+      form.appendChild(document.createElement('br'));
+      const submitButton = document.createElement('button');
+      submitButton.type = 'submit';
+      submitButton.textContent = 'Submit';
+
+      form.appendChild(submitButton);
+      document.body.appendChild(table);
+      document.body.appendChild(form);
+    });
+  </script>
+</body>
+</html>
